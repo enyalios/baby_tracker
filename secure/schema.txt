@@ -1,0 +1,3 @@
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE IF NOT EXISTS "baby" (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT, start INTEGER, end INTEGER, data TEXT, comment TEXT);
+CREATE INDEX start_idx ON "baby" (start);

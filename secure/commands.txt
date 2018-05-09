@@ -1,0 +1,2 @@
+for i in img/full/*.png; do convert -resize 72x72 $i -background none img/`basename $i`; done
+convert img/full/baby.png -background none -resize 256x256 img/baby.png
