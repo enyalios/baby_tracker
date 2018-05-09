@@ -9,6 +9,9 @@ use CGI::Carp qw(fatalsToBrowser);
 (my $progname = $0) =~ s,.*/,,;
 my ($password, $cookie);
 my $message = "";
+my $path = $ENV{SCRIPT_NAME};
+$path =~ s{/[^/]*$}{};
+$path = "/" unless length $path;
 
 if(defined param("password")) {
     $password = param("password");
@@ -16,8 +19,8 @@ if(defined param("password")) {
     chomp(my $pass_from_file = <$fh>);
     close $fh or die;
     if($password eq $pass_from_file) {
-        $cookie = new CGI::Cookie(-name => "baby", -value => $password, -expires => "+3M", -path => "/baby");
-        print header(-cookie => $cookie, -location => "/baby");
+        $cookie = new CGI::Cookie(-name => "baby", -value => $password, -expires => "+3M", -path => $path);
+        print header(-cookie => $cookie, -location => $path);
         exit;
     } else {
         $message = "<br /><span class=\"alert\"><i class=\"fa fa-exclamation-circle\"></i> Bad password.  Please try again.</span><br /><br />";
