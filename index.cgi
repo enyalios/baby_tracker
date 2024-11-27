@@ -25,10 +25,13 @@ Content-Type: text/html
         <title>Baby!</title>
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css" />
         <link rel="stylesheet" type="text/css" href="mystyle.css" />
+        <script src="NoSleep.js"></script>
         <script>
             var dict = {};
             var last_updated = parseInt(new Date() / 1000);
             var fold_visible = 0;
+            var sleepless = 0;
+            var noSleep = new NoSleep();
 EOF
 printf "            dict = JSON.parse('%s');\n", encode_json $tree;
 print <<EOF;
@@ -74,6 +77,10 @@ print <<EOF;
             }
 
             function update(type, data) {
+                if(sleepless == 0) {
+                    noSleep.enable();
+                    sleepless = 1;
+                }
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if(xmlhttp.readyState == 4) {

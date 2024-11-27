@@ -36,6 +36,7 @@ sub print_summary {
     return unless keys %$arg;
     print "<div class=\"summary\">";
     print "Fed ", $arg->{feed}, " times<br />\n" if defined $arg->{feed};
+    print "Pumped ", $arg->{pump}, " times<br />\n" if defined $arg->{pump};
     if(defined $arg->{sleep}) {
         print "Slept ", $arg->{sleep}, " times ";
         print "(", int($arg->{sleeptime} / 60 / 60), "h ", int($arg->{sleeptime} / 60 % 60), "m)<br />\n";

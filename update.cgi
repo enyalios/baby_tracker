@@ -30,7 +30,7 @@ if($type eq "sleep") {
     if(!defined $tree->{$type}->{end}) {
         my $end = $time;
         # if the duration would be less than 10 seconds, set the end
-        # equal to the start show it displays differently is the history
+        # equal to the start so it displays differently in the history
         $end = $tree->{$type}->{start} if $time - $tree->{$type}->{start} <= 10;
         my $sth = $dbh->prepare("UPDATE baby SET end = ? where id = ?");
         my $rv = $sth->execute($end, $tree->{$type}->{id});
